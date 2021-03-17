@@ -13,13 +13,14 @@ class SingleOpp extends React.Component {
 
     return (
       <div onClick={this.handleClick} key={this.props.ind} className='oneTeam'>
-          <p className='teamName'>{this.props.team}</p>
+          <img src={this.props.imgURL} height={100} alt={this.props.team}/>
       </div>
     )
   }
 
   handleClick(event) {
     this.props.getOpp(this.props.id)
+    this.props.closeDrawer()
   }
 }
 
