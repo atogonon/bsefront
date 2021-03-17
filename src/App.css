@@ -28,6 +28,21 @@
   color: #61dafb;
 }
 
+.content {
+  display: flex;
+  flex-direction: row;
+}
+
+.statComps {
+  display: flex;
+  flex-direction: row;
+}
+
+#oppList {
+  overflow: scroll;
+  height: 100vh
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

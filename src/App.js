@@ -1,23 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import { AppBar, Typography, Toolbar } from '@material-ui/core';
+import OppBar from './components/oppBar'
+import Comparison from './components/comparison'
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#484848',
+      main: '#212121',
+      dark: '#000000',
+      contrastText: '#ffffff',
+    },
+  },
+});
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeProvider theme={theme}>
+        <AppBar position='static'>
+          <Toolbar>
+            <Typography variant='h4'>Brooklyn Nets Basketball</Typography>
+          </Toolbar>
+        </AppBar>
+        <div className='content'>
+          <OppBar />
+          <Comparison />
+        </div>
+      </ThemeProvider>
     </div>
   );
 }

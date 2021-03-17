@@ -18,7 +18,7 @@ export const gotTeams = (teams) => {
 export const getTeams = () => {
   return async (dispatch, getState) => {
     try {
-      let teamsList = await Axios.get('https://bseback.herokuapp.com/api/teams')
+      let teamsList = await Axios.get('http://bseback.herokuapp.com/api/teams/')
       dispatch(gotTeams(teamsList.data))
     } catch (error) {
       console.log(error)
