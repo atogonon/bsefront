@@ -33,10 +33,22 @@
   flex-direction: column;
 }
 
+.appToolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%
+}
+
 .atAGlance {
   display: flex;
   flex-direction: row;
+  align-content: center;
   justify-content: center;
+  width: 90vw;
+  align-self: center;
+  margin-bottom: 20px
 }
 
 .statComps {
@@ -55,8 +67,54 @@
   width: fit-content
 }
 
+.charts {
+  width: 90vw;
+  align-self: center;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.content {
+  background-color: lightgray;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: darkgray
+}
+
+.teamName {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#appBarLeft {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 #appHeader {
-  margin: 20px
+  width: 90vw;
+  align-self: center;
+}
+
+#atAGlanceContainer {
+  display: flex;
+  flex-direction: row;
+  width: 90vw;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
 }
 
 #oppBarHeader {
@@ -68,6 +126,30 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.barChart {
+  width: 500px;
+  margin: 10px
+}
+
+#headerContent {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+#loadingScreen {
+  background-color: lightgray;
+  height: 100vh
+}
+
+#polarChart {
+  height: 400px
+}
+
+#statTable {
+  width: 90vw;
+  align-self: center;
 }
 
 @keyframes App-logo-spin {

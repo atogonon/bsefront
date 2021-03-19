@@ -5,7 +5,7 @@ import { AppBar, Typography, Toolbar, Drawer } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import OppBar from './components/oppBar'
-import Comparison from './components/comparison'
+import Content from './components/content'
 import React from 'react';
 
 const theme = createMuiTheme({
@@ -35,10 +35,14 @@ class App extends React.Component {
         <ThemeProvider theme={theme}>
           <AppBar position='sticky'>
             <Toolbar>
-              <IconButton color="inherit" aria-label="open drawer" onClick={this.handleClick} edge="start">
-                <MenuIcon />
-              </IconButton>
-              <Typography variant='h4'>Brooklyn Nets Basketball</Typography>
+              <div className='appToolbar'>
+                <div id='appBarLeft'>
+                <IconButton color="inherit" aria-label="open drawer" onClick={this.handleClick} edge="start">
+                  <MenuIcon />
+                </IconButton>
+                <Typography variant='h4'>Brooklyn Nets Basketball</Typography></div>
+                <img src={process.env.PUBLIC_URL + '/logo.svg'} height='60px' alt='netslogo'/>
+              </div>
             </Toolbar>
             <Drawer variant='persistent' anchor='top' open={this.state.open}>
               <div>
@@ -47,7 +51,7 @@ class App extends React.Component {
             </Drawer>
           </AppBar>
           <div className='content'>
-            <Comparison />
+            <Content />
           </div>
         </ThemeProvider>
       </div>
