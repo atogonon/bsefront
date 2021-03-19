@@ -15,6 +15,7 @@ class OppBar extends React.Component {
 
     const { teams } = this.props
     const closeDrawer=this.props.closeDrawer
+    console.log(teams)
 
     return (
       <div className='oppBar'>
@@ -26,7 +27,7 @@ class OppBar extends React.Component {
             <h3 id='oppBarHeader'>Select An Opponent:</h3>
           </div>
           <div id='oppList'>
-            {teams.slice(2).map((team, ind) => {
+            {teams.slice(2).sort((a, b) => a.id - b.id).map((team, ind) => {
               return (
                 <SingleOpp key={team.id} team={team.team} id={team.id} ind={ind} imgURL={team.imgURL} closeDrawer={closeDrawer}/>
               )

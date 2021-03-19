@@ -28,7 +28,7 @@ class PtsChart extends React.Component {
       <div className='barChart'>
         <Paper>
           <VictoryChart containerComponent={<VictoryZoomContainer/>} domainPadding={20}>
-            <VictoryLegend x={60} y={0} title='Points Per Game' centerTitle orientation='horizontal' gutter={20} data={legendData} style={{title: { fontSize: 20}}}/>
+            <VictoryLegend x={60} y={0} title='Points Per Game' centerTitle orientation='horizontal' gutter={20} data={legendData} style={{labels: { fontSize: 12},title: { fontSize: 20}}}/>
             <VictoryGroup domain={{x: [0, 2], y:[90, 130]}} offset={70} colorScale={"qualitative"} categories={{x: ['Points Per Game']}}>
               <VictoryBar labelComponent={<VictoryTooltip/>} color='black' data={netsData} />
               <VictoryBar labelComponent={<VictoryTooltip/>} color='pink' data={leagueData} />

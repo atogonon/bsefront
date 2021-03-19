@@ -2,11 +2,15 @@ import './App.css';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { AppBar, Typography, Toolbar, Drawer } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
 import OppBar from './components/oppBar'
 import Content from './components/content'
 import React from 'react';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import PropTypes from 'prop-types';
+import Box from '@material-ui/core/Box';
+import RtgChart from './components/rtgChart'
+import { connect } from 'react-redux'
 
 const theme = createMuiTheme({
   palette: {
@@ -19,14 +23,51 @@ const theme = createMuiTheme({
   },
 });
 
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state={ open: false }
+    this.state={
+      open: false,
+      value: 0
+     }
 
     this.handleClick=this.handleClick.bind(this)
     this.closeDrawer=this.closeDrawer.bind(this)
+    this.handleChange=this.handleChange.bind(this)
   }
 
   render() {
@@ -37,10 +78,15 @@ class App extends React.Component {
             <Toolbar>
               <div className='appToolbar'>
                 <div id='appBarLeft'>
-                <IconButton color="inherit" aria-label="open drawer" onClick={this.handleClick} edge="start">
-                  <MenuIcon />
-                </IconButton>
-                <Typography variant='h4'>Brooklyn Nets Basketball</Typography></div>
+                  <div id='headline'>
+                    <Typography variant='h4'>Brooklyn Nets Basketball</Typography>
+                  </div>
+                  <Tabs value={this.state.value} onChange={this.handleChange} aria-label="simple tabs example">
+                    <Tab label="Matchups" {...a11yProps(0)}/>
+                    <Tab label="Team Ratings" {...a11yProps(1)}/>
+                    <Tab label="About" {...a11yProps(2)}/>
+                  </Tabs>
+                </div>
                 <img src={process.env.PUBLIC_URL + '/logo.svg'} height='60px' alt='netslogo'/>
               </div>
             </Toolbar>
@@ -51,21 +97,43 @@ class App extends React.Component {
             </Drawer>
           </AppBar>
           <div className='content'>
-            <Content />
+            <TabPanel value={this.state.value} index={0}>
+              <div className='content'>
+                <Content iconFunc={this.handleClick}/>
+              </div>
+            </TabPanel>
+            <TabPanel value={this.state.value} index={1}>
+              <div className='content'>
+                <RtgChart teams={this.props.teams}/>
+              </div>
+            </TabPanel>
+            <TabPanel value={this.state.value} index={2}>
+              <div>test</div>
+            </TabPanel>
           </div>
         </ThemeProvider>
       </div>
     );
   }
 
+  handleChange(event, newValue) {
+    this.setState({...this.state, value: newValue})
+  }
+
   closeDrawer() {
-    this.setState({ open: false })
+    this.setState({ ...this.state, open: false })
   }
 
   handleClick() {
-    this.setState({ open: !this.state.open})
+    this.setState({ ...this.state, open: !this.state.open})
   }
 
 }
 
-export default App;
+const mapState = (state) => {
+  return {
+    teams: state.teams,
+  }
+}
+
+export default connect(mapState, null)(App);

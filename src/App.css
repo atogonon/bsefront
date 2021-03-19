@@ -96,6 +96,18 @@
   margin-bottom: 0px;
 }
 
+.scatterChart {
+  width: 800px;
+  align-self: center;
+}
+
+#scatterCont {
+  align-self: center;
+  justify-self: center;
+  width: 1000px;
+  align-content: center;
+}
+
 #appBarLeft {
   display: flex;
   flex-direction: row;
@@ -104,17 +116,23 @@
 }
 
 #appHeader {
-  width: 90vw;
+  width: 910px;
   align-self: center;
 }
 
 #atAGlanceContainer {
   display: flex;
   flex-direction: row;
-  width: 90vw;
+  width: 1220px;
   justify-content: center;
   align-items: center;
   padding-top: 40px;
+}
+
+#fabButton {
+  align-self: flex-start;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 #oppBarHeader {
@@ -136,6 +154,10 @@
 #headerContent {
   padding-top: 15px;
   padding-bottom: 15px;
+}
+
+#headline {
+  margin-right: 20px;
 }
 
 #loadingScreen {

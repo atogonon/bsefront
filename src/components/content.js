@@ -12,6 +12,7 @@ import AstTurnChart from './astTurnChart'
 import DefChart from './defChart'
 import PtsChart from './ptsChart'
 import Paper from '@material-ui/core/Paper'
+import Fab from '@material-ui/core/Fab'
 
 class Content extends React.Component {
 
@@ -28,6 +29,11 @@ class Content extends React.Component {
             </div>
           ) : (
             <div className='statComps'>
+              <div id='fabButton'>
+              <Fab color='primary' style={{position: 'fixed'}} onClick={this.props.iconFunc}>
+                <MenuIcon />
+              </Fab>
+            </div>
                 <div id='appHeader'>
                   <Paper>
                     <p id='headerContent'>

@@ -34,7 +34,7 @@ class DefChart extends React.Component {
       <div className='barChart'>
         <Paper>
           <VictoryChart containerComponent={<VictoryZoomContainer/>}>
-            <VictoryLegend x={60} y={0} title='Defensive' centerTitle orientation='horizontal' gutter={20} data={legendData} style={{title: { fontSize: 20}}}/>
+            <VictoryLegend x={60} y={0} title='Defensive' centerTitle orientation='horizontal' gutter={20} data={legendData} style={{labels: { fontSize: 12},title: { fontSize: 20}}}/>
             <VictoryGroup domain={{x: [0, 4], y:[0, 30]}} offset={20} colorScale={"qualitative"} categories={{x: ['Steals', 'Blocks', 'Personal Fouls']}}>
               <VictoryBar labelComponent={<VictoryTooltip/>} color='black' data={netsData} />
               <VictoryBar labelComponent={<VictoryTooltip/>} color='pink' data={leagueData} />

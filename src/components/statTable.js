@@ -44,13 +44,16 @@ class StatTable extends React.Component {
               <TableCell align="right">TOV</TableCell>
               <TableCell align="right">PF</TableCell>
               <TableCell align="right">PTS</TableCell>
+              <TableCell align="right">ORTG</TableCell>
+              <TableCell align="right">DRTG</TableCell>
+              <TableCell align="right">PACE</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <TableRow>
               <TableCell component="th" scope="row">{nets.team}</TableCell>
               {
-                netsKeys.slice(2, 25).map(key => {
+                netsKeys.slice(2, 28).map(key => {
                   return (<TableCell key={key} align="right">{nets[key]}</TableCell>)
                 })
               }
@@ -58,7 +61,7 @@ class StatTable extends React.Component {
             <TableRow>
               <TableCell component="th" scope="row">{opponent.team}</TableCell>
               {
-                oppKeys.slice(2, 25).map(key => {
+                oppKeys.slice(2, 28).map(key => {
                   return (<TableCell key={key} align="right">{opponent[key]}</TableCell>)
                 })
               }
@@ -66,7 +69,7 @@ class StatTable extends React.Component {
             <TableRow>
               <TableCell component="th" scope="row">{league.team}</TableCell>
               {
-                leagueKeys.slice(2, 25).map(key => {
+                leagueKeys.slice(2, 28).map(key => {
                   return (<TableCell key={key} align="right">{league[key]}</TableCell>)
                 })
               }

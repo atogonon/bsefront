@@ -31,7 +31,7 @@ class AstTurnChart extends React.Component {
       <div className='barChart'>
         <Paper>
           <VictoryChart containerComponent={<VictoryZoomContainer/>}>
-            <VictoryLegend x={60} y={0} title='Assists & Turnovers' centerTitle orientation='horizontal' gutter={20} data={legendData} style={{title: { fontSize: 20}}}/>
+            <VictoryLegend x={60} y={0} title='Assists & Turnovers' centerTitle orientation='horizontal' gutter={20} data={legendData} style={{labels: { fontSize: 12},title: { fontSize: 20}}}/>
             <VictoryGroup domain={{x: [0, 3], y:[0, 40]}} offset={25} colorScale={"qualitative"} categories={{x: ['Assists', 'Turnovers']}}>
               <VictoryBar labelComponent={<VictoryTooltip/>} color='black' data={netsData} />
               <VictoryBar labelComponent={<VictoryTooltip/>} color='pink' data={leagueData} />
