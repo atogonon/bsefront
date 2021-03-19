@@ -75,7 +75,7 @@ class Content extends React.Component {
   componentDidMount() {
     this.props.getNets()
     this.props.getLeague()
-    this.props.getOpp(3)
+    if (!this.props.opponent.team) { this.props.getOpp(3) }
   }
 
 }

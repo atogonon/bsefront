@@ -78,16 +78,17 @@ class App extends React.Component {
             <Toolbar>
               <div className='appToolbar'>
                 <div id='appBarLeft'>
-                  <div id='headline'>
-                    <Typography variant='h4'>Brooklyn Nets Basketball</Typography>
+                  <div id='logoContainer'>
+                    <img src={process.env.PUBLIC_URL + '/logo.svg'} height='60px' alt='netslogo'/>
                   </div>
+
                   <Tabs value={this.state.value} onChange={this.handleChange} aria-label="simple tabs example">
                     <Tab label="Matchups" {...a11yProps(0)}/>
                     <Tab label="Team Ratings" {...a11yProps(1)}/>
                     <Tab label="About" {...a11yProps(2)}/>
                   </Tabs>
                 </div>
-                <img src={process.env.PUBLIC_URL + '/logo.svg'} height='60px' alt='netslogo'/>
+                <Typography variant='h5'>Brooklyn Nets Basketball</Typography>
               </div>
             </Toolbar>
             <Drawer variant='persistent' anchor='top' open={this.state.open}>
