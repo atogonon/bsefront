@@ -3,7 +3,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { AppBar, Typography, Toolbar, Drawer } from '@material-ui/core';
 import OppBar from './components/oppBar'
-import Content from './components/content'
+import Matchup from './components/matchup'
 import React from 'react';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import RtgChart from './components/rtgChart'
 import { connect } from 'react-redux'
+import About from './components/about'
 
 const theme = createMuiTheme({
   palette: {
@@ -81,7 +82,6 @@ class App extends React.Component {
                   <div id='logoContainer'>
                     <img src={process.env.PUBLIC_URL + '/logo.svg'} height='60px' alt='netslogo'/>
                   </div>
-
                   <Tabs value={this.state.value} onChange={this.handleChange} aria-label="simple tabs example">
                     <Tab label="Matchups" {...a11yProps(0)}/>
                     <Tab label="Team Ratings" {...a11yProps(1)}/>
@@ -92,26 +92,18 @@ class App extends React.Component {
               </div>
             </Toolbar>
             <Drawer variant='persistent' anchor='top' open={this.state.open}>
-              <div>
                 <OppBar closeDrawer={this.closeDrawer}/>
-              </div>
             </Drawer>
           </AppBar>
-          <div className='content'>
             <TabPanel value={this.state.value} index={0}>
-              <div className='content'>
-                <Content iconFunc={this.handleClick}/>
-              </div>
+                <Matchup iconFunc={this.handleClick}/>
             </TabPanel>
             <TabPanel value={this.state.value} index={1}>
-              <div className='content'>
                 <RtgChart teams={this.props.teams}/>
-              </div>
             </TabPanel>
             <TabPanel value={this.state.value} index={2}>
-              <div>test</div>
+              <About/>
             </TabPanel>
-          </div>
         </ThemeProvider>
       </div>
     );

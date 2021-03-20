@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  background-color: lightgray;
+  height: 100%;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -81,6 +84,7 @@
 
 .content {
   background-color: lightgray;
+  height: auto
 }
 
 .loading {
@@ -99,6 +103,7 @@
 .scatterChart {
   width: 800px;
   align-self: center;
+  margin-top: 25px;
 }
 
 #scatterCont {
@@ -165,8 +170,16 @@
   height: 100vh
 }
 
+#main {
+  height: 100vh
+}
+
 #polarChart {
   height: 400px
+}
+
+#rtgChartHeader {
+  padding: 15px;
 }
 
 #statTable {

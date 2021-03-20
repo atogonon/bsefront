@@ -14,14 +14,14 @@ import PtsChart from './ptsChart'
 import Paper from '@material-ui/core/Paper'
 import Fab from '@material-ui/core/Fab'
 
-class Content extends React.Component {
+class Matchup extends React.Component {
 
   render() {
 
     const { teams, nets, league, opponent } = this.props
 
     return (
-      <div>
+      <div className='content'>
         {
           (!teams.length || !nets.team || !league.team || !opponent.team) ? (
             <div id='loadingScreen'>
@@ -97,4 +97,4 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Content)
+export default connect(mapState, mapDispatch)(Matchup)
