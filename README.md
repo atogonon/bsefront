@@ -1,3 +1,11 @@
+This is the front end for my basketball stats project.
+
+You can view the back end repo here: https://github.com/atogonon/bseback
+
+You can view the deployed app here: https://bballstatsproject.herokuapp.com/
+
+=================================================
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
