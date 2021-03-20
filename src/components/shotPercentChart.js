@@ -38,7 +38,7 @@ class ShotPercentChart extends React.Component {
         <Paper>
           <VictoryChart containerComponent={<VictoryZoomContainer/>}>
             <VictoryLegend x={60} y={0} title='Shooting %s' centerTitle orientation='horizontal' gutter={20} data={legendData} style={{labels: { fontSize: 12},title: { fontSize: 20}}}/>
-            <VictoryGroup domain={{x: [0, 7], y:[0.2, 1]}} offset={20} colorScale={"qualitative"} categories={{x: ['FG%', '2pt%', '3pt%', 'FT%']}}>
+            <VictoryGroup domain={{x: [0, 7], y:[0.2, 1]}} offset={20} colorScale={"qualitative"} categories={{x: ['FG%', '', '2pt%', ' ', '3pt%', '  ', 'FT%']}} >
               <VictoryBar labelComponent={<VictoryTooltip/>} color='black' data={netsData} />
               <VictoryBar labelComponent={<VictoryTooltip/>} color='pink' data={leagueData} />
               <VictoryBar labelComponent={<VictoryTooltip/>} color={opponent.color} data={oppData} />

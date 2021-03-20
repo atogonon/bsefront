@@ -37,7 +37,8 @@ class Matchup extends React.Component {
                 <div id='appHeader'>
                   <Paper>
                     <p id='headerContent'>
-                      Welcome to my app! Here you can view the stats of the Brooklyn Nets and see how they compare to a given opponent.<br/>
+                      Welcome to my app! Here you can view the stats of the Brooklyn Nets and see how they compare to a given opponent.<br/><br/>
+                      All data from this project was courtesy of <a href='https://www.basketball-reference.com/'>Basketball Reference</a> and are per-game averages (with some advanced stats like adjusted offensive & defensive rating and pace) based on data collected from the 2020-2021 NBA season up to March 19th 2021.<br/><br/>
                       To select an opponent, click on the <MenuIcon /> button on the top left of your screen above.
                     </p>
                   </Paper>
