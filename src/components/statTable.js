@@ -17,7 +17,7 @@ class StatTable extends React.Component {
     return (
       <div id='statTable'>
       <TableContainer component={Paper}>
-        <Table >
+        <Table>
           <TableHead style={{ color: 'grey'}}>
             <TableRow>
               <TableCell>Team</TableCell>
