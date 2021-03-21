@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 export function convertToPolar(teams, nets, opp) {
   let minPts=Infinity, maxPts=-Infinity, minBlk=Infinity, maxBlk=-Infinity, minStl=Infinity, maxStl=-Infinity, minReb=Infinity, maxReb=-Infinity, minAst=Infinity, maxAst=-Infinity
@@ -86,3 +87,14 @@ export function a11yProps(index) {
     'aria-controls': `simple-tabpanel-${index}`,
   };
 }
+
+export const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#484848',
+      main: '#212121',
+      dark: '#000000',
+      contrastText: '#ffffff',
+    },
+  },
+});

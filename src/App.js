@@ -1,5 +1,4 @@
 import './App.css';
-import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { AppBar, Typography, Toolbar, Drawer } from '@material-ui/core';
 import OppBar from './components/oppBar'
@@ -10,18 +9,7 @@ import Tab from '@material-ui/core/Tab';
 import RtgChart from './components/rtgChart'
 import { connect } from 'react-redux'
 import About from './components/about'
-import { TabPanel, a11yProps } from './utils'
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: '#484848',
-      main: '#212121',
-      dark: '#000000',
-      contrastText: '#ffffff',
-    },
-  },
-});
+import { TabPanel, a11yProps, theme } from './utils'
 
 class App extends React.Component {
   constructor(props) {
