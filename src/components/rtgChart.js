@@ -16,9 +16,6 @@ class RtgChart extends React.Component {
               Here you can find out how each team measures up to the rest of the league with respect to offensive and defensive ratings (adjusted for opponent strength).  Moving further right along the x axis means better offense, moving up along the y axis means better defense.  Ideally, any given team would want to move towards the upper right portion of the chart.  Mouse over each data point to identify the team and their individual offensive and defensive ratings.<br/><br/>
               All data from this project was courtesy of <a href='https://www.basketball-reference.com/'>Basketball Reference</a> and based on data collected from the 2020-2021 NBA season up to March 19th 2021.
             </p>
-            <p>
-
-            </p>
           </Paper>
         </div>
         <div className='scatterChart'>
