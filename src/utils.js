@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import { Typography } from '@material-ui/core';
 import { createMuiTheme } from '@material-ui/core/styles';
+import { createContainer } from 'victory'
 
 export function convertToPolar(teams, nets, opp) {
   let minPts=Infinity, maxPts=-Infinity, minBlk=Infinity, maxBlk=-Infinity, minStl=Infinity, maxStl=-Infinity, minReb=Infinity, maxReb=-Infinity, minAst=Infinity, maxAst=-Infinity
@@ -98,3 +99,5 @@ export const theme = createMuiTheme({
     },
   },
 });
+
+ export const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi");
