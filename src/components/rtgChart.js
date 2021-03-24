@@ -31,7 +31,7 @@ class RtgChart extends React.Component {
               </div>
               <div className='scatterChart'>
                 <Paper>
-                  <VictoryChart theme={VictoryTheme.material} height={500} width={500} containerComponent={<VictoryZoomVoronoiContainer/>} domain={{x: [102,123], y: [102,123]}} labels='ORtg' labelComponent={<VictoryLabel />}>
+                  <VictoryChart theme={VictoryTheme.material} height={500} width={500} containerComponent={<VictoryZoomVoronoiContainer/>} domain={{x: [102,123], y: [102,123]}} labelComponent={<VictoryLabel />}>
                     {
                       teams.slice(1).map(team => {
                         return (
