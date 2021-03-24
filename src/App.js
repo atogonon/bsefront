@@ -6,10 +6,10 @@ import Matchup from './components/matchup'
 import React from 'react';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import TabPanel from './components/tabPanel'
 import RtgChart from './components/rtgChart'
-import { connect } from 'react-redux'
 import About from './components/about'
-import { TabPanel, a11yProps, theme } from './utils'
+import { tabProps, theme } from './utils'
 
 class App extends React.Component {
   constructor(props) {
@@ -37,9 +37,9 @@ class App extends React.Component {
                     <img src={process.env.PUBLIC_URL + '/logo.svg'} height='60px' alt='netslogo'/>
                   </div>
                   <Tabs value={this.state.value} onChange={this.handleChange} aria-label="simple tabs example">
-                    <Tab label="Matchups" {...a11yProps(0)}/>
-                    <Tab label="Team Ratings" {...a11yProps(1)}/>
-                    <Tab label="About" {...a11yProps(2)}/>
+                    <Tab label="Matchups" {...tabProps(0)}/>
+                    <Tab label="Team Ratings" {...tabProps(1)}/>
+                    <Tab label="About" {...tabProps(2)}/>
                   </Tabs>
                 </div>
                 <Typography variant='h5'>Brooklyn Nets Basketball</Typography>
@@ -53,7 +53,7 @@ class App extends React.Component {
                 <Matchup iconFunc={this.handleClick}/>
             </TabPanel>
             <TabPanel value={this.state.value} index={1}>
-                <RtgChart teams={this.props.teams}/>
+                <RtgChart />
             </TabPanel>
             <TabPanel value={this.state.value} index={2}>
               <About/>
@@ -77,10 +77,4 @@ class App extends React.Component {
 
 }
 
-const mapState = (state) => {
-  return {
-    teams: state.teams,
-  }
-}
-
-export default connect(mapState, null)(App);
+export default App;

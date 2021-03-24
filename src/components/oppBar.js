@@ -14,7 +14,7 @@ class OppBar extends React.Component {
   render() {
 
     const { teams } = this.props
-    const closeDrawer=this.props.closeDrawer
+    const closeDrawer = this.props.closeDrawer
 
     return (
       <div className='oppBar'>

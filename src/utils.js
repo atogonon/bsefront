@@ -1,12 +1,11 @@
-import PropTypes from 'prop-types';
-import Box from '@material-ui/core/Box';
-import { Typography } from '@material-ui/core';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { createContainer } from 'victory'
 
+//Function to convert data for polar chart in matchups
 export function convertToPolar(teams, nets, opp) {
   let minPts=Infinity, maxPts=-Infinity, minBlk=Infinity, maxBlk=-Infinity, minStl=Infinity, maxStl=-Infinity, minReb=Infinity, maxReb=-Infinity, minAst=Infinity, maxAst=-Infinity
 
+  //iterate through each team to find the max and min of each stat category in the polar chart
   teams.forEach(team => {
     if (team.pts > maxPts) { maxPts=team.pts }
     if (team.pts < minPts) { minPts=team.pts}
@@ -24,71 +23,63 @@ export function convertToPolar(teams, nets, opp) {
     if (team.ast < minAst) { minAst=team.ast}
   })
 
-  let ptsRange=maxPts-minPts, blkRange=maxBlk-minBlk, stlRange=maxStl-minStl, rebRange=maxReb-minReb, astRange=maxAst-minAst
-  let newPtsRange=(10*ptsRange)/8
-  let newBlkRange=(10*blkRange)/8
-  let newStlRange=(10*stlRange)/8
-  let newRebRange=(10*rebRange)/8
-  let newAstRange=(10*astRange)/8
+  // Use the max and min of each stat to calculate the range for the polar chart.
+  // For the new range I wanted the minValue to represent 10% of the range and maxValue to represent 90% (So original range = 80% of new range)
+  function rangeCalc(min, max){
+    let origRange=max-min, newRange=(10*origRange)/8
+    return [newRange, origRange]
+  }
+  let ptsRanges=rangeCalc(minPts, maxPts)
+  let blkRanges=rangeCalc(minBlk, maxBlk)
+  let stlRanges=rangeCalc(minStl, maxStl)
+  let rebRanges=rangeCalc(minReb, maxReb)
+  let astRanges=rangeCalc(minAst, maxAst)
 
-  let subPts=minPts-((newPtsRange-ptsRange)/2)
-  let subBlk=minBlk-((newBlkRange-blkRange)/2)
-  let subStl=minStl-((newStlRange-stlRange)/2)
-  let subReb=minReb-((newRebRange-rebRange)/2)
-  let subAst=minAst-((newAstRange-astRange)/2)
+  // Calculate the value to subtract from the stat so that it falls within the new range
+  function calcSub(min, ranges) {
+    return min-((ranges[0]-ranges[1])/2)
+  }
+  let subPts=calcSub(minPts, ptsRanges)
+  let subBlk=calcSub(minBlk, blkRanges)
+  let subStl=calcSub(minStl, stlRanges)
+  let subReb=calcSub(minReb, rebRanges)
+  let subAst=calcSub(minAst, astRanges)
+
+  // Calculate the normalized value of the stat by subtracting from the original value and dividing by the new range
+  function calcValue(stat, sub, range) {
+    return (stat-sub)/range[0]
+  }
 
   let resNets=[
-    { x: 1 , y: (nets.pts-subPts)/newPtsRange, label: `${nets.pts} PPG` },
-    { x: 2 , y: (nets.blk-subBlk)/newBlkRange, label: `${nets.blk} BPG` },
-    { x: 3 , y: (nets.stl-subStl)/newStlRange, label: `${nets.stl} SPG` },
-    { x: 4 , y: (nets.trb-subReb)/newRebRange, label: `${nets.trb} RPG` },
-    { x: 5 , y: (nets.ast-subAst)/newAstRange, label: `${nets.ast} APG` },
+    { x: 1 , y: calcValue(nets.pts, subPts, ptsRanges), label: `${nets.pts} PPG` },
+    { x: 2 , y: calcValue(nets.blk, subBlk, blkRanges), label: `${nets.blk} BPG` },
+    { x: 3 , y: calcValue(nets.stl, subStl, stlRanges), label: `${nets.stl} SPG` },
+    { x: 4 , y: calcValue(nets.trb, subReb, rebRanges), label: `${nets.trb} RPG` },
+    { x: 5 , y: calcValue(nets.ast, subAst, astRanges), label: `${nets.ast} APG` },
   ]
 
   let resOpp=[
-    { x: 1 , y: (opp.pts-subPts)/newPtsRange, label: `${opp.pts} PPG` },
-    { x: 2 , y: (opp.blk-subBlk)/newBlkRange, label: `${opp.blk} BPG` },
-    { x: 3 , y: (opp.stl-subStl)/newStlRange, label: `${opp.stl} SPG` },
-    { x: 4 , y: (opp.trb-subReb)/newRebRange, label: `${opp.trb} RPG` },
-    { x: 5 , y: (opp.ast-subAst)/newAstRange, label: `${opp.ast} APG` },
+    { x: 1 , y: calcValue(opp.pts, subPts, ptsRanges), label: `${opp.pts} PPG` },
+    { x: 2 , y: calcValue(opp.blk, subBlk, blkRanges), label: `${opp.blk} BPG` },
+    { x: 3 , y: calcValue(opp.stl, subStl, stlRanges), label: `${opp.stl} SPG` },
+    { x: 4 , y: calcValue(opp.trb, subReb, rebRanges), label: `${opp.trb} RPG` },
+    { x: 5 , y: calcValue(opp.ast, subAst, astRanges), label: `${opp.ast} APG` },
   ]
 
   return [resNets, resOpp]
 }
 
-export function TabPanel(props) {
-  const { children, value, index, ...other } = props;
 
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-export function a11yProps(index) {
+// Helper function for tabProps
+export function tabProps(index) {
   return {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
   };
 }
 
+
+// Creates theme for the AppBar component
 export const theme = createMuiTheme({
   palette: {
     primary: {
@@ -100,4 +91,6 @@ export const theme = createMuiTheme({
   },
 });
 
- export const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi");
+
+// Creates custom victory container component for rtgChart.js
+export const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi");
