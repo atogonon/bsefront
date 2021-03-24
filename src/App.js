@@ -18,7 +18,7 @@ class App extends React.Component {
     this.state={
       open: false,
       value: 0
-     }
+    }
 
     this.handleClick=this.handleClick.bind(this)
     this.closeDrawer=this.closeDrawer.bind(this)
@@ -49,15 +49,15 @@ class App extends React.Component {
                 <OppBar closeDrawer={this.closeDrawer}/>
             </Drawer>
           </AppBar>
-            <TabPanel value={this.state.value} index={0}>
-                <Matchup iconFunc={this.handleClick}/>
-            </TabPanel>
-            <TabPanel value={this.state.value} index={1}>
-                <RtgChart />
-            </TabPanel>
-            <TabPanel value={this.state.value} index={2}>
-              <About/>
-            </TabPanel>
+          <TabPanel value={this.state.value} index={0}>
+            <Matchup iconFunc={this.handleClick}/>
+          </TabPanel>
+          <TabPanel value={this.state.value} index={1}>
+            <RtgChart />
+          </TabPanel>
+          <TabPanel value={this.state.value} index={2}>
+            <About/>
+          </TabPanel>
         </ThemeProvider>
       </div>
     );

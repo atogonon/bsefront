@@ -24,40 +24,40 @@ class Matchup extends React.Component {
       <div className='content'>
         {
           (!teams.length || !nets.team || !league.team || !opponent.team) ? (
-            <div id='loadingScreen'>
+            <div className='loadingScreen'>
               <h1 className='loading'>LOADING DATA</h1>
             </div>
           ) : (
             <div className='statComps'>
               <div id='fabButton'>
-              <Fab color='primary' style={{position: 'fixed'}} onClick={this.props.iconFunc}>
-                <MenuIcon />
-              </Fab>
-            </div>
-                <div id='appHeader'>
-                  <Paper>
-                    <p id='headerContent'>
-                      Welcome to my app! Here you can view the stats of the Brooklyn Nets and see how they compare to a given opponent. You can hover over each data point in each chart to view the exact value for that stat.<br/><br/>
-                      All data from this project is courtesy of <a href='https://www.basketball-reference.com/'>Basketball Reference</a> and are per-game averages (with some advanced stats like adjusted offensive & defensive rating and pace) based on data collected from the 2020-2021 NBA season up to March 19th 2021.<br/><br/>
+                <Fab color='primary' style={{position: 'fixed'}} onClick={this.props.iconFunc}>
+                  <MenuIcon />
+                </Fab>
+              </div>
+              <div id='appHeader'>
+                <Paper>
+                  <p id='headerContent'>
+                    Welcome to my app! Here you can view the stats of the Brooklyn Nets and see how they compare to a given opponent. You can hover over each data point in each chart to view the exact value for that stat.<br/><br/>
+                    All data from this project is courtesy of <a href='https://www.basketball-reference.com/'>Basketball Reference</a> and are per-game averages (with some advanced stats like adjusted offensive & defensive rating and pace) based on data collected from the 2020-2021 NBA season up to March 19th 2021.<br/><br/>
                       To select an opponent, click on the <MenuIcon /> button on the top left of your screen above.
-                    </p>
-                  </Paper>
-                </div>
-                <div className='atAGlance'>
-                  <Paper>
-                    <div id='atAGlanceContainer'>
-                      <div className='netsStats'>
-                        <h1 className='teamName'>{nets.team}</h1>
-                        <img src={nets.imgURL}  height={400} alt={nets.team}/><br/>
-                      </div>
-                      <PolarChart nets={nets} opponent={opponent} teams={teams}/>
-                      <div className='oppStats'>
-                        <h1 className='teamName'>{opponent.team}</h1>
-                        <img src={opponent.imgURL}  height={400} alt={opponent.team}/><br/>
-                      </div>
+                  </p>
+                </Paper>
+              </div>
+              <div className='atAGlance'>
+                <Paper>
+                  <div id='atAGlanceContainer'>
+                    <div className='netsStats'>
+                      <h1 className='teamName'>{nets.team}</h1>
+                      <img src={nets.imgURL}  height={400} alt={nets.team}/><br/>
                     </div>
-                  </Paper>
-                </div>
+                    <PolarChart nets={nets} opponent={opponent} teams={teams}/>
+                    <div className='oppStats'>
+                      <h1 className='teamName'>{opponent.team}</h1>
+                      <img src={opponent.imgURL}  height={400} alt={opponent.team}/><br/>
+                    </div>
+                  </div>
+                </Paper>
+              </div>
               <StatTable nets={nets} opponent={opponent} league={league} />
               <div className='charts'>
                   <ShotPercentChart nets={nets} league={league} opponent={opponent}/>

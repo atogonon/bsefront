@@ -5,11 +5,6 @@
   min-height: 100vh;
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-}
-
 .appToolbar {
   display: flex;
   flex-direction: row;
@@ -28,20 +23,9 @@
   margin-bottom: 20px
 }
 
-.statComps {
-  display: flex;
-  flex-direction: column;
-}
-
-.oneTeam {
-  margin: 5px;
-}
-
-.closeButton {
-  align-self: flex-start;
-  margin-top: 20px;
-  margin-left: 20px;
-  width: fit-content
+.barChart {
+  width: 500px;
+  margin: 10px
 }
 
 .charts {
@@ -56,7 +40,16 @@
   flex-wrap: wrap;
 }
 
+.closeButton {
+  align-self: flex-start;
+  margin-top: 20px;
+  margin-left: 20px;
+  width: fit-content
+}
+
 .content {
+  display: flex;
+  flex-direction: column;
   background-color: lightgray;
   height: auto
 }
@@ -74,15 +67,29 @@
   color: darkgray
 }
 
-.teamName {
-  margin-top: 0px;
-  margin-bottom: 0px;
+.loadingScreen {
+  background-color: lightgray;
+  height: 100vh
+}
+
+.oneTeam {
+  margin: 5px;
 }
 
 .scatterChart {
   width: 800px;
   align-self: center;
   margin-top: 25px;
+}
+
+.statComps {
+  display: flex;
+  flex-direction: column;
+}
+
+.teamName {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 #abtContainer {
@@ -92,13 +99,6 @@
 
 #abtContent {
   padding: 15px;
-}
-
-#scatterCont {
-  align-self: center;
-  justify-self: center;
-  width: 1000px;
-  align-content: center;
 }
 
 #appBarLeft {
@@ -128,6 +128,18 @@
   margin-left: 10px;
 }
 
+#headerContent {
+  padding: 15px;
+}
+
+#logoContainer {
+  margin-right: 20px;
+}
+
+#main {
+  height: 100vh
+}
+
 #oppBarHeader {
   margin-top: 0;
 }
@@ -139,28 +151,6 @@
   justify-content: center;
 }
 
-.barChart {
-  width: 500px;
-  margin: 10px
-}
-
-#headerContent {
-  padding: 15px;
-}
-
-#logoContainer {
-  margin-right: 20px;
-}
-
-#loadingScreen {
-  background-color: lightgray;
-  height: 100vh
-}
-
-#main {
-  height: 100vh
-}
-
 #polarChart {
   height: 400px
 }
@@ -169,16 +159,14 @@
   padding: 15px;
 }
 
+#scatterCont {
+  align-self: center;
+  justify-self: center;
+  width: 1000px;
+  align-content: center;
+}
+
 #statTable {
   width: 90vw;
   align-self: center;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

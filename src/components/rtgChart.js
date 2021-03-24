@@ -16,7 +16,7 @@ class RtgChart extends React.Component {
       <div>
         {
           !teams.length ? (
-            <div id='loadingScreen'>
+            <div className='loadingScreen'>
               <h1 className='loading'>LOADING DATA</h1>
             </div>
           ) : (
