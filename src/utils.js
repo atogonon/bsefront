@@ -94,3 +94,133 @@ export const theme = createMuiTheme({
 
 // Creates custom victory container component for rtgChart.js
 export const VictoryZoomVoronoiContainer = createContainer("zoom", "voronoi");
+
+
+// Generate barChart component data objects
+export function generateBarData(nets, league, opponent) {
+
+  const legend=[
+    {name: nets.team, symbol: {fill: 'black'}}, {name: 'League Avg', symbol: {fill: 'pink'}}, {name: opponent.team, symbol: {fill: opponent.color}}
+  ]
+
+  const spData = {
+      title: 'Shooting %s',
+      domain: {x: [0, 8], y:[0.2, 1]},
+      categories: {x: ['FG%', '', '2pt%', ' ', '3pt%', '  ', 'FT%']},
+      legend: legend,
+      nets: [
+        { x: 1, y: nets.fgp, label: `${nets.fgp}`},
+        { x: 3, y: nets.twoP, label: `${nets.twoP}` },
+        { x: 5, y: nets.thrP, label: `${nets.thrP}` },
+        { x: 7, y: nets.ftP, label: `${nets.ftP}` }
+      ],
+      league: [
+        { x: 1, y: league.fgp, label: `${league.fgp}` },
+        { x: 3, y: league.twoP, label: `${league.twoP}` },
+        { x: 5, y: league.thrP, label: `${league.thrP}` },
+        { x: 7, y: league.ftP, label: `${league.ftP}` }
+      ],
+      opponent: [
+        { x: 1, y: opponent.fgp, label: `${opponent.fgp}` },
+        { x: 3, y: opponent.twoP, label: `${opponent.twoP}` },
+        { x: 5, y: opponent.thrP, label: `${opponent.thrP}` },
+        { x: 7, y: opponent.ftP, label: `${opponent.ftP}` }
+      ],
+      color: opponent.color,
+      offset: 20,
+      domainPadding: 0
+    }
+
+    const defData = {
+      title: 'Defensive',
+      domain: {x: [0, 4], y:[0, 30]},
+      categories: {x: ['Steals', 'Blocks', 'Personal Fouls']},
+      legend: legend,
+      nets: [
+        { x: 1, y: nets.stl, label: `${nets.stl}`},
+        { x: 2, y: nets.blk, label: `${nets.blk}` },
+        { x: 3, y: nets.pf, label: `${nets.pf}` },
+      ],
+      league: [
+        { x: 1, y: league.stl, label: `${league.stl}` },
+        { x: 2, y: league.blk, label: `${league.blk}` },
+        { x: 3, y: league.pf, label: `${league.pf}` },
+      ],
+      opponent: [
+        { x: 1, y: opponent.stl, label: `${opponent.stl}` },
+        { x: 2, y: opponent.blk, label: `${opponent.blk}` },
+        { x: 3, y: opponent.pf, label: `${opponent.pf}` },
+      ],
+      color: opponent.color,
+      offset: 20,
+      domainPadding: 0
+    }
+
+    const astTurnData = {
+      title: 'Assists & Turnovers',
+      domain: {x: [0, 3], y:[0, 40]},
+      categories: {x: ['Assists', 'Turnovers']},
+      legend: legend,
+      nets: [
+        { x: 1, y: nets.ast, label: `${nets.ast}`},
+        { x: 2, y: nets.tov, label: `${nets.tov}` },
+      ],
+      league: [
+        { x: 1, y: league.ast, label: `${league.ast}` },
+        { x: 2, y: league.tov, label: `${league.tov}` },
+      ],
+      opponent: [
+        { x: 1, y: opponent.ast, label: `${opponent.ast}` },
+        { x: 2, y: opponent.tov, label: `${opponent.tov}` },
+      ],
+      color: opponent.color,
+      offset: 25,
+      domainPadding: 0
+    }
+
+    const rebData = {
+      title: 'Rebounding',
+      domain: {x: [0, 4], y:[0, 60]},
+      categories: {x: ['Off Reb', 'Def Reb', 'Total Reb']},
+      legend: legend,
+      nets: [
+        { x: 1, y: nets.orb, label: `${nets.orb}`},
+        { x: 2, y: nets.drb, label: `${nets.drb}` },
+        { x: 3, y: nets.trb, label: `${nets.trb}` },
+      ],
+      league: [
+        { x: 1, y: league.orb, label: `${league.orb}` },
+        { x: 2, y: league.drb, label: `${league.drb}` },
+        { x: 3, y: league.trb, label: `${league.trb}` },
+      ],
+      opponent: [
+        { x: 1, y: opponent.orb, label: `${opponent.orb}` },
+        { x: 2, y: opponent.drb, label: `${opponent.drb}` },
+        { x: 3, y: opponent.trb, label: `${opponent.trb}` },
+      ],
+      color: opponent.color,
+      offset: 20,
+      domainPadding: 0
+    }
+
+    const ptsData = {
+      title: 'Points Per Game',
+      domain: {x: [0, 2], y:[90, 130]},
+      categories: {x: ['Points Per Game']},
+      legend: legend,
+      nets: [
+        { x: 1, y: nets.pts, label: `${nets.pts}`},
+      ],
+      league: [
+        { x: 1, y: league.pts, label: `${league.pts}` },
+      ],
+      opponent: [
+        { x: 1, y: opponent.pts, label: `${opponent.pts}` },
+      ],
+      color: opponent.color,
+      offset: 70,
+      domainPadding: 20
+    }
+
+    return [spData, defData, astTurnData, rebData, ptsData]
+}

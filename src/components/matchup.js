@@ -6,19 +6,18 @@ import { getOpp } from '../reducers/opponentReducer'
 import MenuIcon from '@material-ui/icons/Menu'
 import StatTable from './statTable'
 import PolarChart from './polarChart'
-import ShotPercentChart from './shotPercentChart'
-import RebChart from './rebChart'
-import AstTurnChart from './astTurnChart'
-import DefChart from './defChart'
-import PtsChart from './ptsChart'
+import BarChart from './barChart'
 import Paper from '@material-ui/core/Paper'
 import Fab from '@material-ui/core/Fab'
+import { generateBarData } from '../utils'
 
 class Matchup extends React.Component {
 
   render() {
 
     const { teams, nets, league, opponent } = this.props
+
+    const [spData, defData, astTurnData, rebData, ptsData] = generateBarData(nets, league, opponent)
 
     return (
       <div className='content'>
@@ -60,11 +59,11 @@ class Matchup extends React.Component {
               </div>
               <StatTable nets={nets} opponent={opponent} league={league} />
               <div className='charts'>
-                  <ShotPercentChart nets={nets} league={league} opponent={opponent}/>
-                  <RebChart nets={nets} league={league} opponent={opponent}/>
-                  <AstTurnChart nets={nets} league={league} opponent={opponent}/>
-                  <DefChart nets={nets} league={league} opponent={opponent}/>
-                  <PtsChart nets={nets} league={league} opponent={opponent}/>
+                  <BarChart data={spData} />
+                  <BarChart data={rebData} />
+                  <BarChart data={astTurnData} />
+                  <BarChart data={defData} />
+                  <BarChart data={ptsData} />
               </div>
             </div>
           )
