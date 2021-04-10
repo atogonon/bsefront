@@ -103,124 +103,115 @@ export function generateBarData(nets, league, opponent) {
     {name: nets.team, symbol: {fill: 'black'}}, {name: 'League Avg', symbol: {fill: 'pink'}}, {name: opponent.team, symbol: {fill: opponent.color}}
   ]
 
-  const spData = {
-      title: 'Shooting %s',
-      domain: {x: [0, 8], y:[0.2, 1]},
-      categories: {x: ['FG%', '', '2pt%', ' ', '3pt%', '  ', 'FT%']},
-      legend: legend,
-      nets: [
-        { x: 1, y: nets.fgp, label: `${nets.fgp}`},
-        { x: 3, y: nets.twoP, label: `${nets.twoP}` },
-        { x: 5, y: nets.thrP, label: `${nets.thrP}` },
-        { x: 7, y: nets.ftP, label: `${nets.ftP}` }
-      ],
-      league: [
-        { x: 1, y: league.fgp, label: `${league.fgp}` },
-        { x: 3, y: league.twoP, label: `${league.twoP}` },
-        { x: 5, y: league.thrP, label: `${league.thrP}` },
-        { x: 7, y: league.ftP, label: `${league.ftP}` }
-      ],
-      opponent: [
-        { x: 1, y: opponent.fgp, label: `${opponent.fgp}` },
-        { x: 3, y: opponent.twoP, label: `${opponent.twoP}` },
-        { x: 5, y: opponent.thrP, label: `${opponent.thrP}` },
-        { x: 7, y: opponent.ftP, label: `${opponent.ftP}` }
-      ],
-      color: opponent.color,
-      offset: 20,
-      domainPadding: 0
+  //  Helper function to form data object structure
+  function dataObj(title, domain, categories, nets, league, opponent, color, offset, domainPadding) {
+    return {
+      title,
+      domain,
+      categories,
+      legend,
+      nets,
+      league,
+      opponent,
+      color,
+      offset,
+      domainPadding,
     }
+  }
 
-    const defData = {
-      title: 'Defensive',
-      domain: {x: [0, 4], y:[0, 30]},
-      categories: {x: ['Steals', 'Blocks', 'Personal Fouls']},
-      legend: legend,
-      nets: [
-        { x: 1, y: nets.stl, label: `${nets.stl}`},
-        { x: 2, y: nets.blk, label: `${nets.blk}` },
-        { x: 3, y: nets.pf, label: `${nets.pf}` },
-      ],
-      league: [
-        { x: 1, y: league.stl, label: `${league.stl}` },
-        { x: 2, y: league.blk, label: `${league.blk}` },
-        { x: 3, y: league.pf, label: `${league.pf}` },
-      ],
-      opponent: [
-        { x: 1, y: opponent.stl, label: `${opponent.stl}` },
-        { x: 2, y: opponent.blk, label: `${opponent.blk}` },
-        { x: 3, y: opponent.pf, label: `${opponent.pf}` },
-      ],
-      color: opponent.color,
-      offset: 20,
-      domainPadding: 0
-    }
+  // Create shooting percentage data object
+  const spDomain={x: [0, 8], y:[0.2, 1]}
+  const spCat={x: ['FG%', '', '2pt%', ' ', '3pt%', '  ', 'FT%']}
+  const spNets=[
+    { x: 1, y: nets.fgp, label: `${nets.fgp}`},
+    { x: 3, y: nets.twoP, label: `${nets.twoP}` },
+    { x: 5, y: nets.thrP, label: `${nets.thrP}` },
+    { x: 7, y: nets.ftP, label: `${nets.ftP}` }
+  ]
+  const spLeague=[
+    { x: 1, y: league.fgp, label: `${league.fgp}` },
+    { x: 3, y: league.twoP, label: `${league.twoP}` },
+    { x: 5, y: league.thrP, label: `${league.thrP}` },
+    { x: 7, y: league.ftP, label: `${league.ftP}` }
+  ]
+  const spOpponent=[
+    { x: 1, y: opponent.fgp, label: `${opponent.fgp}` },
+    { x: 3, y: opponent.twoP, label: `${opponent.twoP}` },
+    { x: 5, y: opponent.thrP, label: `${opponent.thrP}` },
+    { x: 7, y: opponent.ftP, label: `${opponent.ftP}` }
+  ]
+  const spData=dataObj('Shooting %s', spDomain, spCat, spNets, spLeague, spOpponent, opponent.color, 20, 0)
 
-    const astTurnData = {
-      title: 'Assists & Turnovers',
-      domain: {x: [0, 3], y:[0, 40]},
-      categories: {x: ['Assists', 'Turnovers']},
-      legend: legend,
-      nets: [
-        { x: 1, y: nets.ast, label: `${nets.ast}`},
-        { x: 2, y: nets.tov, label: `${nets.tov}` },
-      ],
-      league: [
-        { x: 1, y: league.ast, label: `${league.ast}` },
-        { x: 2, y: league.tov, label: `${league.tov}` },
-      ],
-      opponent: [
-        { x: 1, y: opponent.ast, label: `${opponent.ast}` },
-        { x: 2, y: opponent.tov, label: `${opponent.tov}` },
-      ],
-      color: opponent.color,
-      offset: 25,
-      domainPadding: 0
-    }
+  //Create defensive data object
+  const defDomain={x: [0, 4], y:[0, 30]}
+  const defCat={x: ['Steals', 'Blocks', 'Personal Fouls']}
+  const defNets=[
+    { x: 1, y: nets.stl, label: `${nets.stl}`},
+    { x: 2, y: nets.blk, label: `${nets.blk}` },
+    { x: 3, y: nets.pf, label: `${nets.pf}` },
+  ]
+  const defLeague=[
+    { x: 1, y: league.stl, label: `${league.stl}` },
+    { x: 2, y: league.blk, label: `${league.blk}` },
+    { x: 3, y: league.pf, label: `${league.pf}` },
+  ]
+  const defOpponent=[
+    { x: 1, y: opponent.stl, label: `${opponent.stl}` },
+    { x: 2, y: opponent.blk, label: `${opponent.blk}` },
+    { x: 3, y: opponent.pf, label: `${opponent.pf}` },
+  ]
+  const defData=dataObj('Defensive', defDomain, defCat, defNets, defLeague, defOpponent, opponent.color, 20, 0)
 
-    const rebData = {
-      title: 'Rebounding',
-      domain: {x: [0, 4], y:[0, 60]},
-      categories: {x: ['Off Reb', 'Def Reb', 'Total Reb']},
-      legend: legend,
-      nets: [
-        { x: 1, y: nets.orb, label: `${nets.orb}`},
-        { x: 2, y: nets.drb, label: `${nets.drb}` },
-        { x: 3, y: nets.trb, label: `${nets.trb}` },
-      ],
-      league: [
-        { x: 1, y: league.orb, label: `${league.orb}` },
-        { x: 2, y: league.drb, label: `${league.drb}` },
-        { x: 3, y: league.trb, label: `${league.trb}` },
-      ],
-      opponent: [
-        { x: 1, y: opponent.orb, label: `${opponent.orb}` },
-        { x: 2, y: opponent.drb, label: `${opponent.drb}` },
-        { x: 3, y: opponent.trb, label: `${opponent.trb}` },
-      ],
-      color: opponent.color,
-      offset: 20,
-      domainPadding: 0
-    }
+  // Create assist/turnover data object
+  const astDomain={x: [0, 3], y:[0, 40]}
+  const astCat={x: ['Assists', 'Turnovers']}
+  const astNets=[
+    { x: 1, y: nets.ast, label: `${nets.ast}`},
+    { x: 2, y: nets.tov, label: `${nets.tov}` },
+  ]
+  const astLeague=[
+    { x: 1, y: league.ast, label: `${league.ast}` },
+    { x: 2, y: league.tov, label: `${league.tov}` },
+  ]
+  const astOpponent=[
+    { x: 1, y: opponent.ast, label: `${opponent.ast}` },
+    { x: 2, y: opponent.tov, label: `${opponent.tov}` },
+  ]
+  const astTurnData=dataObj('Assists & Turnovers', astDomain, astCat, astNets, astLeague, astOpponent, opponent.color, 25, 0)
 
-    const ptsData = {
-      title: 'Points Per Game',
-      domain: {x: [0, 2], y:[90, 130]},
-      categories: {x: ['Points Per Game']},
-      legend: legend,
-      nets: [
-        { x: 1, y: nets.pts, label: `${nets.pts}`},
-      ],
-      league: [
-        { x: 1, y: league.pts, label: `${league.pts}` },
-      ],
-      opponent: [
-        { x: 1, y: opponent.pts, label: `${opponent.pts}` },
-      ],
-      color: opponent.color,
-      offset: 70,
-      domainPadding: 20
-    }
+  // Create rebounding data object
+  const rebDomain={x: [0, 4], y:[0, 60]}
+  const rebCat={x: ['Off Reb', 'Def Reb', 'Total Reb']}
+  const rebNets=[
+    { x: 1, y: nets.orb, label: `${nets.orb}`},
+    { x: 2, y: nets.drb, label: `${nets.drb}` },
+    { x: 3, y: nets.trb, label: `${nets.trb}` },
+  ]
+  const rebLeague=[
+    { x: 1, y: league.orb, label: `${league.orb}` },
+    { x: 2, y: league.drb, label: `${league.drb}` },
+    { x: 3, y: league.trb, label: `${league.trb}` },
+  ]
+  const rebOpponent=[
+    { x: 1, y: opponent.orb, label: `${opponent.orb}` },
+    { x: 2, y: opponent.drb, label: `${opponent.drb}` },
+    { x: 3, y: opponent.trb, label: `${opponent.trb}` },
+  ]
+  const rebData=dataObj('Rebounding', rebDomain, rebCat, rebNets, rebLeague, rebOpponent, opponent.color, 20, 0)
 
-    return [spData, defData, astTurnData, rebData, ptsData]
+  // Create ppg data object
+  const ptsDomain={x: [0, 2], y:[90, 130]}
+  const ptsCat={x: ['Points Per Game']}
+  const ptsNets=[
+    { x: 1, y: nets.pts, label: `${nets.pts}`},
+  ]
+  const ptsLeague=[
+    { x: 1, y: league.pts, label: `${league.pts}` },
+  ]
+  const ptsOpponent=[
+    { x: 1, y: opponent.pts, label: `${opponent.pts}` },
+  ]
+  const ptsData=dataObj('Points Per Game', ptsDomain, ptsCat, ptsNets, ptsLeague, ptsOpponent, opponent.color, 70, 20)
+
+  return [spData, defData, astTurnData, rebData, ptsData]
 }
