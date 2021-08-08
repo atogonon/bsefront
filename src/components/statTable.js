@@ -7,18 +7,16 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-class StatTable extends React.Component {
+function StatTable(props) {
 
-  render() {
+  const { nets, league, opponent } = props
+  const netsKeys = Object.keys(nets), oppKeys = Object.keys(opponent), leagueKeys = Object.keys(league)
 
-    const { nets, league, opponent } = this.props
-    const netsKeys=Object.keys(nets), oppKeys=Object.keys(opponent), leagueKeys=Object.keys(league)
-
-    return (
-      <div id='statTable'>
+  return (
+    <div id='statTable'>
       <TableContainer component={Paper}>
         <Table>
-          <TableHead style={{ color: 'grey'}}>
+          <TableHead style={{ color: 'grey' }}>
             <TableRow>
               <TableCell>Team</TableCell>
               <TableCell align="right">Games Played</TableCell>
@@ -75,8 +73,8 @@ class StatTable extends React.Component {
         </Table>
       </TableContainer>
     </div>
-    )
-  }
+  )
+
 }
 
 export default StatTable

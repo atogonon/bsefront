@@ -1,49 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getTeams } from '../reducers/teamsReducer'
 import SingleOpp from './singleOpp'
 import CloseIcon from '@material-ui/icons/Close';
 
-class OppBar extends React.Component {
-  constructor(props) {
-    super(props)
+function OppBar(props) {
 
-    this.handleClick=this.handleClick.bind(this)
-  }
+  const { teams, getTeams } = props
+  const closeDrawer = props.closeDrawer
+  const handleClick = () => { closeDrawer() }
 
-  render() {
+  useEffect(() => {
+    getTeams()
+  }, [getTeams])
 
-    const { teams } = this.props
-    const closeDrawer = this.props.closeDrawer
-
-    return (
-      <div className='oppBar'>
-        <div className='closeButton'>
-          <CloseIcon onClick={this.handleClick}/>
+  return (
+    <div className='oppBar'>
+      <div className='closeButton'>
+        <CloseIcon onClick={handleClick} />
+      </div>
+      <div className='teams'>
+        <div>
+          <h3 id='oppBarHeader'>Select An Opponent:</h3>
         </div>
-        <div className='teams'>
-          <div>
-            <h3 id='oppBarHeader'>Select An Opponent:</h3>
-          </div>
-          <div id='oppList'>
-            {teams.slice(2).sort((a, b) => a.id - b.id).map((team, ind) => {
-              return (
-                <SingleOpp key={team.id} team={team.team} id={team.id} ind={ind} imgURL={team.imgURL} closeDrawer={closeDrawer}/>
-              )
-            })}
-          </div>
+        <div id='oppList'>
+          {teams.slice(2).sort((a, b) => a.id - b.id).map((team, ind) => {
+            return (
+              <SingleOpp key={team.id} team={team.team} id={team.id} ind={ind} imgURL={team.imgURL} closeDrawer={closeDrawer} />
+            )
+          })}
         </div>
       </div>
-    )
-  }
-
-  handleClick() {
-    this.props.closeDrawer()
-  }
-
-  componentDidMount() {
-    this.props.getTeams()
-  }
+    </div>
+  )
 
 }
 
