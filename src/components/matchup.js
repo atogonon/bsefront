@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getNets } from '../reducers/netsReducer'
 import { getLeague } from '../reducers/leagueReducer'
 import { getOpp } from '../reducers/opponentReducer'
@@ -13,15 +13,19 @@ import { generateBarData } from '../utils'
 
 function Matchup(props) {
 
-  const { teams, nets, league, opponent, getNets, getLeague, getOpp } = props
+  const teams = useSelector((state) => state.teams)
+  const nets = useSelector((state) => state.nets)
+  const league = useSelector((state) => state.league)
+  const opponent = useSelector((state) => state.opponent)
+  const dispatch=useDispatch()
 
   const [spData, defData, astTurnData, rebData, ptsData] = generateBarData(nets, league, opponent)
 
   useEffect(() => {
-    getNets()
-    getLeague()
-    if (!opponent.team) { getOpp(3) }
-  }, [getLeague, getNets, getOpp, opponent.team])
+    dispatch(getNets())
+    dispatch(getLeague())
+    if (!opponent.team) { dispatch(getOpp(3)) }
+  }, [opponent.team, dispatch])
 
   return (
     <div className='content'>
@@ -77,21 +81,4 @@ function Matchup(props) {
 
 }
 
-const mapState = (state) => {
-  return {
-    teams: state.teams,
-    nets: state.nets,
-    league: state.league,
-    opponent: state.opponent
-  }
-}
-
-const mapDispatch = (dispatch) => {
-  return {
-    getNets: () => dispatch(getNets()),
-    getLeague: () => dispatch(getLeague()),
-    getOpp: (id) => dispatch(getOpp(id))
-  }
-}
-
-export default connect(mapState, mapDispatch)(Matchup)
+export default Matchup

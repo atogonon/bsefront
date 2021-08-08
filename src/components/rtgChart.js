@@ -1,18 +1,19 @@
 import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getTeams } from '../reducers/teamsReducer'
 import { VictoryChart, VictoryScatter, VictoryTheme, VictoryTooltip, VictoryAxis, VictoryLabel, VictoryLegend } from 'victory'
 import Paper from '@material-ui/core/Paper'
 import LogoPoint from './logoPoint'
 import { VictoryZoomVoronoiContainer } from '../utils'
 
-function RtgChart(props) {
+function RtgChart() {
 
-  const { teams, getTeams } = props
+  const teams = useSelector((state) => state.teams)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    if (!teams.length) { getTeams() }
-  }, [teams.length, getTeams])
+    if (!teams.length) { dispatch(getTeams()) }
+  }, [teams.length, dispatch])
 
   return (
     <div>
@@ -55,16 +56,4 @@ function RtgChart(props) {
 
 }
 
-const mapState = (state) => {
-  return {
-    teams: state.teams
-  }
-}
-
-const mapDispatch = (dispatch) => {
-  return {
-    getTeams: () => dispatch(getTeams()),
-  }
-}
-
-export default connect(mapState, mapDispatch)(RtgChart)
+export default RtgChart

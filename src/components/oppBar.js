@@ -1,18 +1,19 @@
 import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { getTeams } from '../reducers/teamsReducer'
 import SingleOpp from './singleOpp'
 import CloseIcon from '@material-ui/icons/Close';
 
 function OppBar(props) {
 
-  const { teams, getTeams } = props
+  const teams = useSelector((state) => state.teams)
+  const dispatch = useDispatch()
   const closeDrawer = props.closeDrawer
   const handleClick = () => { closeDrawer() }
 
   useEffect(() => {
-    getTeams()
-  }, [getTeams])
+    dispatch(getTeams())
+  }, [dispatch])
 
   return (
     <div className='oppBar'>
@@ -36,16 +37,4 @@ function OppBar(props) {
 
 }
 
-const mapState = (state) => {
-  return {
-    teams: state.teams
-  }
-}
-
-const mapDispatch = (dispatch) => {
-  return {
-    getTeams: () => dispatch(getTeams()),
-  }
-}
-
-export default connect(mapState, mapDispatch)(OppBar)
+export default OppBar

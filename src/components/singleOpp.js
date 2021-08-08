@@ -1,12 +1,13 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getOpp } from '../reducers/opponentReducer'
 
 function SingleOpp(props) {
 
-  const { closeDrawer, getOpp, id } = props
+  const { closeDrawer, id } = props
+  const dispatch = useDispatch()
   const handleClick = () => {
-    getOpp(id)
+    dispatch(getOpp(id))
     closeDrawer()
   }
 
@@ -18,10 +19,4 @@ function SingleOpp(props) {
 
 }
 
-const mapDispatch = (dispatch) => {
-  return {
-    getOpp: (id) => dispatch(getOpp(id))
-  }
-}
-
-export default connect(null, mapDispatch)(SingleOpp)
+export default SingleOpp
