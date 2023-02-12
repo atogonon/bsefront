@@ -18,7 +18,7 @@ export const gotLeague = (league) => {
 export const getLeague = () => {
   return async (dispatch, getState) => {
     try {
-      let league = await Axios.get('https://bseback.herokuapp.com/api/teams/1')
+      let league = await Axios.get('https://bballstats-be.onrender.com/api/teams/1')
       dispatch(gotLeague(league.data))
     } catch (error) {
       console.log(error)

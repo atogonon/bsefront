@@ -18,7 +18,7 @@ export const gotOpp = (opp) => {
 export const getOpp = (id) => {
   return async (dispatch, getState) => {
     try {
-      let opp = await Axios.get(`https://bseback.herokuapp.com/api/teams/${id}`)
+      let opp = await Axios.get(`https://bballstats-be.onrender.com/api/teams/${id}`)
       dispatch(gotOpp(opp.data))
     } catch (error) {
       console.log(error)

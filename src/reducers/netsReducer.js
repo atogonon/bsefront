@@ -18,7 +18,7 @@ export const gotNets = (nets) => {
 export const getNets = () => {
   return async (dispatch, getState) => {
     try {
-      let nets = await Axios.get('https://bseback.herokuapp.com/api/teams/2')
+      let nets = await Axios.get('https://bballstats-be.onrender.com/api/teams/2')
       dispatch(gotNets(nets.data))
     } catch (error) {
       console.log(error)
