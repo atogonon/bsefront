@@ -13,7 +13,7 @@ function SingleOpp(props) {
 
   return (
     <div onClick={handleClick} key={props.ind} className='oneTeam'>
-      <img src={props.imgURL} height={100} alt={props.team} />
+      <img src={props.imgURL} height={100} width={100} alt={props.team} />
     </div>
   )
 

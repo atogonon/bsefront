@@ -11,6 +11,11 @@ function StatTable(props) {
 
   const { nets, league, opponent } = props
   const netsKeys = Object.keys(nets), oppKeys = Object.keys(opponent), leagueKeys = Object.keys(league)
+  const betterStat = (key, current, opp) => {
+    return (key === 'tov' || key === 'pf')
+      ? current[key] < opp[key]
+      : current[key] > opp[key]
+  }
 
   return (
     <div id='statTable'>
@@ -49,7 +54,7 @@ function StatTable(props) {
               <TableCell component="th" scope="row">{nets.team}</TableCell>
               {
                 netsKeys.slice(2, 25).map(key => {
-                  return (<TableCell key={key} align="right">{nets[key]}</TableCell>)
+                  return (<TableCell key={key} align="right"><p className={ betterStat(key, nets, opponent) ? 'tableCellValue' : '' }>{nets[key]}</p></TableCell>)
                 })
               }
             </TableRow>
@@ -57,7 +62,7 @@ function StatTable(props) {
               <TableCell component="th" scope="row">{opponent.team}</TableCell>
               {
                 oppKeys.slice(2, 25).map(key => {
-                  return (<TableCell key={key} align="right">{opponent[key]}</TableCell>)
+                  return (<TableCell key={key} align="right"><p className={ betterStat(key, opponent, nets) ? 'tableCellValue' : '' }>{opponent[key]}</p></TableCell>)
                 })
               }
             </TableRow>

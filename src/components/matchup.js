@@ -55,12 +55,12 @@ function Matchup(props) {
                 <div id='atAGlanceContainer'>
                   <div className='netsStats'>
                     <h1 className='teamName'>{nets.team}</h1>
-                    <img src={nets.imgURL} height={400} alt={nets.team} /><br />
+                    <img src={nets.imgURL} height={400} width={400} alt={nets.team} /><br />
                   </div>
                   <PolarChart nets={nets} opponent={opponent} teams={teams} />
                   <div className='oppStats'>
                     <h1 className='teamName'>{opponent.team}</h1>
-                    <img src={opponent.imgURL} height={400} alt={opponent.team} /><br />
+                    <img src={opponent.imgURL} height={400} width={400} alt={opponent.team} /><br />
                   </div>
                 </div>
               </Paper>
