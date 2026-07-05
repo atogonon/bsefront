@@ -2,7 +2,7 @@ This is the front end for my basketball stats project.
 
 You can view the back end repo here: https://github.com/atogonon/bseback
 
-You can view the deployed app here: https://bballstatsproject.herokuapp.com/
+You can view the deployed app here: https://bballstats-fe.onrender.com
 
 =================================================
 
